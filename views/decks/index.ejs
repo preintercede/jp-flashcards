@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jp Flashcards</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <!-- JavaScript for Materialize -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="decks/new" class="brand-logo left">Create New Deck</a>
+          <ul class="right">
+            <li>
+              <% if (user) { %>
+              <a href="/logout"
+                ><i class="material-icons left">trending_flat</i>Log Out</a
+              >
+              <% } else { %>
+              <a href="/auth/google"
+                ><i class="material-icons left">vpn_key</i>Login with Google</a
+              >
+              <% } %>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <h1>Your List of Decks</h1>
+  </body>
+</html>

@@ -17,6 +17,7 @@ require("./config/database");
 require("./config/passport");
 
 const decksRouter = require("./routes/decks");
+const cardsRouter = require("./routes/cards");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -42,6 +43,7 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/decks", decksRouter);
+app.use("/cards", cardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

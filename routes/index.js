@@ -3,6 +3,10 @@ var router = express.Router();
 var passport = require("passport");
 /* GET home page. */
 
+router.get("/", (req, res) => {
+  res.redirect("/users");
+});
+
 router.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
