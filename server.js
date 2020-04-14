@@ -16,6 +16,8 @@ require("dotenv").config();
 require("./config/database");
 require("./config/passport");
 
+const decksRouter = require("./routes/decks");
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -39,6 +41,7 @@ app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/", usersRouter);
+app.use("/decks", decksRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
