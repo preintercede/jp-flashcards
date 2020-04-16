@@ -4,13 +4,8 @@ const Card = require("../models/card");
 // /decks "your list of decks page"
 const index = (req, res) => {
   Deck.find({ user: req.user }, (err, foundDecks) => {
-    console.log("found decks ");
     res.render("decks/index", { user: req.user, decks: foundDecks });
   });
-};
-
-const newDeck = (req, res) => {
-  res.render("decks/new");
 };
 
 const all = (req, res) => {
@@ -36,7 +31,6 @@ const newCard = (req, res) => {
 };
 
 const create = (req, res) => {
-  console.log("!!!!!" + req.body);
   req.body.user = req.user._id;
   const deck = new Deck(req.body);
   deck.name = "Default Deck Name";
