@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New deck</title>
+    <title>Add New deck</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -17,29 +17,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="" class="brand-logo left">JP Flash Cards</a>
-          <ul class="right">
-            <li>
-              <% if (user) { %>
-              <a href=""
-                ><i class="material-icons left">trending_flat</i>Log Out</a
-              >
-              <% } else { %>
-              <a href="/auth/google"
-                ><i class="material-icons left">vpn_key</i>Login with Google</a
-              >
-              <% } %>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
     <h1>Create a new deck</h1>
     <form action="/decks" method="post">
-      <input type="text" placeholder="Enter a name for this deck" />
+      <input type="text" name="name" placeholder="Enter a name for this deck" />
       <input type="submit" value="Create deck" />
     </form>
   </body>

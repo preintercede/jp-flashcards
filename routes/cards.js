@@ -1,7 +1,7 @@
 const router = require("express").Router();
+const cardsCtrl = require("../controllers/cards");
 
-router.get("/", (req, res) => {
-  res.send("Cards page");
-});
+router.delete("/:id", cardsCtrl.delete);
+router.put("/:id", cardsCtrl.update);
 
 module.exports = router;

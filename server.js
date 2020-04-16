@@ -9,6 +9,8 @@ var passport = require("passport");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var decksRouter = require("./routes/decks");
+var cardsRouter = require("./routes/cards");
 
 var app = express();
 
@@ -16,16 +18,13 @@ require("dotenv").config();
 require("./config/database");
 require("./config/passport");
 
-const decksRouter = require("./routes/decks");
-const cardsRouter = require("./routes/cards");
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 

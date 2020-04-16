@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jp Flashcards</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -20,7 +20,7 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="decks/new" class="brand-logo left">Create New Deck</a>
+          <a href="/decks">Back</a>
           <ul class="right">
             <li>
               <% if (user) { %>
@@ -37,15 +37,12 @@
         </div>
       </nav>
     </div>
-    <h1>Your List of Decks</h1>
-    <div class="deck-body">
-      <% decks.forEach(d => { %>
-      <a href="/decks/<%= d._id %>"
-        ><button class="decks">
-          <div><%= d.name %></div>
-        </button></a
-      >
-      <% }); %>
-    </div>
+    <h3>Current Deck: <%=deck.name %></h3>
+    <h5>Add Card</h5>
+    <form action="/decks/<%=deck._id %>" method="post">
+      <input type="text" name="front" placeholder="Front of card" />
+      <input type="text" name="back" placeholder="back of card" />
+      <input type="submit" value="Create card" />
+    </form>
   </body>
 </html>
