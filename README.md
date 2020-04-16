@@ -29,6 +29,7 @@ HTML, CSS, Javascript, ExpressJS, NodeJS, Mongoose, MongoDB
 ---
 
 [JP-Flashcards](https://jp-flashcards.herokuapp.com/)
+
 [Trello](https://trello.com/b/Bu1iPqvq/learning-japanese)
 
 ## Next Steps
