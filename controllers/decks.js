@@ -1,9 +1,10 @@
 const Deck = require("../models/deck");
 const Card = require("../models/card");
 
+// /decks "your list of decks page"
 const index = (req, res) => {
   Deck.find({ user: req.user }, (err, foundDecks) => {
-    console.log("found decks ", foundDecks);
+    console.log("found decks ");
     res.render("decks/index", { user: req.user, decks: foundDecks });
   });
 };
@@ -12,10 +13,36 @@ const newDeck = (req, res) => {
   res.render("decks/new");
 };
 
+const all = (req, res) => {
+  Deck.find({}, (req, res) => {
+    res.render("decks/alldecks", { decks });
+  });
+};
+
+const newCard = (req, res) => {
+  const card = new Card(req.body);
+  console.log("did it go through");
+  card.save((err) => {
+    if (err) {
+      console.log("didnt go through");
+      return res.redirect(`/decks/${req.params.id}`);
+    }
+    Deck.findById(req.params.id, (err, deck) => {
+      deck.cards.push(card);
+      console.log(card);
+      deck.save((err) => {
+        res.redirect(`/decks/${req.params.id}`);
+      });
+    });
+  });
+};
+
 const create = (req, res) => {
   console.log("!!!!!" + req.body);
+  req.body.user = req.user._id;
   const deck = new Deck(req.body);
-  console.log(deck.name);
+  deck.name = "Default Deck Name";
+  //console.log(deck.name);
   deck.save((err) => {
     if (err) return res.redirect("/decks/new");
 
@@ -24,7 +51,15 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  Deck.findByIdAndUpdate(req.params.id, (err, result) => {
+  console.log("update action");
+  console.log(req.params.id);
+  Deck.findByIdAndUpdate(req.params.id, req.body, (err, deck) => {
+    if (err) {
+      console.log("error");
+      console.log(err);
+      return res.redirect(`/decks/${deck._id}`);
+    }
+    console.log(deck.name);
     res.redirect(`/decks/${deck._id}`);
   });
 };
@@ -49,7 +84,9 @@ const show = (req, res) => {
 };
 
 module.exports = {
+  all,
   index,
+  newCard,
   new: newDeck,
   create,
   update,

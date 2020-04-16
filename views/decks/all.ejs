@@ -20,7 +20,7 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="/decks">Back</a>
+          <a href="decks/new" class="brand-logo left">Create New Deck</a>
           <ul class="right">
             <li>
               <% if (user) { %>
@@ -37,22 +37,14 @@
         </div>
       </nav>
     </div>
-    <h3>Current Deck: <%=deck.name %></h3>
-    <form action="/decks/<%= deck._id %>?_method=PUT" method="POST">
-      <input
-        type="text"
-        name="name"
-        id="change-name"
-        placeholder="New Deck Name"
-      />
-      <input class="button" type="submit" value="Change Deck Name" />
-    </form>
-    <h5>Add Card</h5>
-    <form action="/decks/<%=deck._id %>/cards" method="post">
-      <input type="text" name="front" placeholder="Front of card" />
-      <input type="text" name="back" placeholder="back of card" />
-      <input type="submit" value="Create card" />
-    </form>
-    <h5>Cards</h5>
+    <div class="deck-body">
+      <% decks.forEach(d => { %>
+      <a href="/decks/<%= d._id %>"
+        ><button class="decks">
+          <div><%= d.name %></div>
+        </button></a
+      >
+      <% }); %>
+    </div>
   </body>
 </html>
