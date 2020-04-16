@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const deckSchema = new mongoose.Schema(
   {
-    name: { type: String },
-    user: { type: mongoose.Schema.Types.ObjectId },
-    cards: [],
+    name: { type: String, required: true },
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "Card" }],
   },
   { timestamps: true }
 );

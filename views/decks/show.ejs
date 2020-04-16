@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/deckshow.css" />
     <!-- JavaScript for Materialize -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -37,6 +37,11 @@
         </div>
       </nav>
     </div>
+    <div class="delete">
+      <form action="/decks/<%= deck._id %>?_method=DELETE" method="POST">
+        <input class="button" type="submit" value="Delete this deck" />
+      </form>
+    </div>
     <h3>Current Deck: <%=deck.name %></h3>
     <form action="/decks/<%= deck._id %>?_method=PUT" method="POST">
       <input
@@ -44,15 +49,38 @@
         name="name"
         id="change-name"
         placeholder="New Deck Name"
+        style="width: 300px;"
       />
+      <br />
       <input class="button" type="submit" value="Change Deck Name" />
     </form>
     <h5>Add Card</h5>
     <form action="/decks/<%=deck._id %>/cards" method="post">
-      <input type="text" name="front" placeholder="Front of card" />
-      <input type="text" name="back" placeholder="back of card" />
+      <input
+        type="text"
+        style="width: 300px;"
+        name="front"
+        placeholder="Front of card"
+      />
+      <br />
+      <input
+        type="text"
+        style="width: 300px;"
+        name="back"
+        placeholder="back of card"
+      />
+      <br />
       <input type="submit" value="Create card" />
     </form>
     <h5>Cards</h5>
+    <div class="card-body">
+      <% cards.forEach((c, i) => { %>
+      <div class="card display">
+        <span class="front"><%= c.front %></span><br />
+        <span class="back"><%= c.back %></span>
+        <span><%= c %></span>
+      </div>
+      <% }); %>
+    </div>
   </body>
 </html>

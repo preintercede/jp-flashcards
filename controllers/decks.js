@@ -21,10 +21,8 @@ const all = (req, res) => {
 
 const newCard = (req, res) => {
   const card = new Card(req.body);
-  console.log("did it go through");
   card.save((err) => {
     if (err) {
-      console.log("didnt go through");
       return res.redirect(`/decks/${req.params.id}`);
     }
     Deck.findById(req.params.id, (err, deck) => {
@@ -42,7 +40,6 @@ const create = (req, res) => {
   req.body.user = req.user._id;
   const deck = new Deck(req.body);
   deck.name = "Default Deck Name";
-  //console.log(deck.name);
   deck.save((err) => {
     if (err) return res.redirect("/decks/new");
 
@@ -50,6 +47,7 @@ const create = (req, res) => {
   });
 };
 
+//should be done?
 const update = (req, res) => {
   console.log("update action");
   console.log(req.params.id);
@@ -87,14 +85,8 @@ module.exports = {
   all,
   index,
   newCard,
-  new: newDeck,
   create,
   update,
   delete: deleteDeck,
   show,
 };
-
-// <% deck.cards.forEach((card){ %>
-//   <h2><%=card.front %></h2>
-//   <h2><%=card.back %></h2>
-// <%}) %>

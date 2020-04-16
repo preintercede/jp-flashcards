@@ -1,0 +1,12 @@
+.deck-body {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}
+
+.decks {
+  background-color: #42f5da;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}

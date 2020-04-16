@@ -8,5 +8,6 @@ router.get("/all", decksCtrl.all);
 // router.post("/new", decksCtrl.create);
 router.post("/:id/cards", decksCtrl.newCard);
 router.put("/:id", decksCtrl.update);
+router.delete("/:id", decksCtrl.delete);
 
 module.exports = router;
