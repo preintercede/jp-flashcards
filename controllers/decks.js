@@ -41,7 +41,6 @@ const create = (req, res) => {
   });
 };
 
-//should be done?
 const update = (req, res) => {
   console.log("update action");
   console.log(req.params.id);
